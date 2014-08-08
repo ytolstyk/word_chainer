@@ -19,7 +19,6 @@ class WordChainer
     until @current_words.empty?
       count += 1
       new_current_words = check_for_seen
-      p @tree
       if new_current_words.include?(@end_word)
         return display_chain(count)
       end
