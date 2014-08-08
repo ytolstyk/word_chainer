@@ -1,0 +1,9 @@
+Merge Sort - if array is longer than 1, split it and do merge(mergesort(1), mergesort(2)). 
+merge looks at both halves and returns them sorted
+
+
+Class method that returns an instance of the class is called a Factory method.
+.reject Array method removes things that satisfy the block criteria
+
+Block/Proc/Lambda
+
