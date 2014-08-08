@@ -83,7 +83,7 @@ class WordChainer
       word.length.times do |i|
         count += 1 unless word[i] == current_word[i]
       end
-      if count == 1 and !@all_seen_words.include?(word)
+      if count == 1 && !@all_seen_words.include?(word)
         adjacent_words << word
       end
     end
