@@ -19,12 +19,11 @@ class WordChainer
     until @current_words.empty?
       count += 1
       new_current_words = check_for_seen
-      p @tree
+      #p @tree
       if new_current_words.include?(@end_word)
         return display_chain(count)
       end
       populate_current_words(new_current_words)    
-      
     end
     
     return "No chain"
@@ -35,7 +34,7 @@ class WordChainer
   
   def display_chain(count)
     puts "The chain is #{count} steps long."
-    puts depth_first_search(@start_word) # << @end_word
+    puts depth_first_search(@start_word).unshift(@end_word).reverse
   end
  
   def depth_first_search(start_word, path = [])
@@ -45,7 +44,6 @@ class WordChainer
     until stack.empty?
       start = stack.shift
       temp = depth_first_search(start)
-      p temp
       if temp.nil?
         next
       else
@@ -85,7 +83,9 @@ class WordChainer
       word.length.times do |i|
         count += 1 unless word[i] == current_word[i]
       end
-      adjacent_words << word if count == 1
+      if count == 1 and !@all_seen_words.include?(word)
+        adjacent_words << word
+      end
     end
     adjacent_words
   end  
