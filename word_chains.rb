@@ -37,7 +37,7 @@ class WordChainer
     puts depth_first_search(@start_word).unshift(@end_word).reverse
   end
  
-  def depth_first_search(start_word, path = [])
+  def depth_first_search(start_word)
     return nil if @tree[start_word] == []
     return [start_word] if @tree[start_word].include?(@end_word)
     stack = @tree[start_word]
