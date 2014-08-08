@@ -19,7 +19,7 @@ class WordChainer
     until @current_words.empty?
       count += 1
       new_current_words = check_for_seen
-      #p @tree
+      p @tree
       if new_current_words.include?(@end_word)
         return display_chain(count)
       end
@@ -38,7 +38,8 @@ class WordChainer
   end
  
   def depth_first_search(start_word)
-    return nil if @tree[start_word] == []
+    #return nil if @tree[start_word] == []
+    return nil unless @tree.has_key?(start_word)
     return [start_word] if @tree[start_word].include?(@end_word)
     stack = @tree[start_word]
     until stack.empty?
@@ -57,11 +58,12 @@ class WordChainer
     array = []
     @current_words.each do |word|    
       unless @all_seen_words.include?(word)
-        array += all_adjacent_words(word) 
-        @tree[word] = array
-        array.each do |i|
-          @tree[i] = [] unless @all_seen_words.include?(i)
-        end
+        temp_array = all_adjacent_words(word)
+        array += temp_array
+        @tree[word] = temp_array
+        # array.each do |i|
+        #   @tree[i] = [] unless @all_seen_words.include?(i)
+        # end
         @all_seen_words << word
       end   
     end
