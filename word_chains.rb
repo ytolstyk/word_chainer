@@ -35,20 +35,23 @@ class WordChainer
   
   def display_chain(count)
     puts "The chain is #{count} steps long."
-    puts depth_first_search(@start_word)
+    puts depth_first_search(@start_word) # << @end_word
   end
  
   def depth_first_search(start_word, path = [])
-    # return nil if @tree[start_word] == []
-    # return [start_word] if @tree[start_word].include?(@end_word)
-    # stack = @tree[start_word]
-    # until stack.empty?
-    #   start = stack.shift
-    #   temp = depth_first_search(start)
-    #   # next if temp.nil?
-    #   next if temp.nil?
-    #   return temp << start_word
-    # end
+    return nil if @tree[start_word] == []
+    return [start_word] if @tree[start_word].include?(@end_word)
+    stack = @tree[start_word]
+    until stack.empty?
+      start = stack.shift
+      temp = depth_first_search(start)
+      p temp
+      if temp.nil?
+        next
+      else
+        return temp << start_word
+      end
+    end
   end
  
   #populates array with unseen words
